@@ -54,7 +54,7 @@ public class EditStudent extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), DesplayAll.class);
                         startActivity(intent1);
                     }else {
-                        Toast.makeText(getApplicationContext()," Error In Data",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext()," Error In Data Filed",Toast.LENGTH_LONG).show();
                     }
                 }else{
                     Toast.makeText(getApplicationContext(),"Filed Please Entar Data",Toast.LENGTH_LONG).show();
