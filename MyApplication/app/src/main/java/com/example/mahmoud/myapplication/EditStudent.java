@@ -13,6 +13,7 @@ public class EditStudent extends AppCompatActivity {
     EditText name ,email,number;
     Button add;
     StudentDataSurce studentDataSurce;
+    Student student1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +44,18 @@ public class EditStudent extends AppCompatActivity {
             public void onClick(View view) { //cheack for data
                 if (!name.getText().toString().isEmpty()&& !email.getText().toString().isEmpty()&&!number.getText().toString().isEmpty())
                 {
-                    studentDataSurce.open();//open connection and add data and close connction show toast
-                    studentDataSurce.updateStudent(id,name.getText().toString(),email.getText().toString(),Integer.parseInt(number.getText().toString()));
-                    studentDataSurce.close();
-                    Toast.makeText(getApplicationContext(),"Down!",Toast.LENGTH_LONG).show();
-                    Intent intent1 = new Intent(getApplicationContext(),DesplayAll.class);
-                    startActivity(intent1);
+                    if (student1.rgxData(name.getText().toString(),"txt")
+                            && student1.rgxData(number.getText().toString(),"number")&&
+                            student1.rgxData(email.getText().toString(),"email")) {
+                        studentDataSurce.open();//open connection and add data and close connction show toast
+                        studentDataSurce.updateStudent(id, name.getText().toString(), email.getText().toString(), Integer.parseInt(number.getText().toString()));
+                        studentDataSurce.close();
+                        Toast.makeText(getApplicationContext(), "Down!", Toast.LENGTH_LONG).show();
+                        Intent intent1 = new Intent(getApplicationContext(), DesplayAll.class);
+                        startActivity(intent1);
+                    }else {
+                        Toast.makeText(getApplicationContext()," Error In Data",Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(getApplicationContext(),"Filed Please Entar Data",Toast.LENGTH_LONG).show();
                 }

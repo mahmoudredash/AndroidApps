@@ -65,7 +65,7 @@ public class DesplayAll extends AppCompatActivity {
                                 Intent intent2 = new Intent(getApplicationContext(),DesplayAll.class);
                                 startActivity(intent2);
                             }
-                        }) //problem end setPositiveButton execut
+                        }) //problem end setPositiveButton execut  ..
                         .show();
             }
         });

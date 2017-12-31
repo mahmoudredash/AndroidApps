@@ -12,6 +12,7 @@ public class AddStudent extends AppCompatActivity {
     EditText name ,email,number;
     Button add;
     StudentDataSurce studentDataSurce;
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +31,26 @@ public class AddStudent extends AppCompatActivity {
             public void onClick(View view) { //cheack for data
                 if (!name.getText().toString().isEmpty()&& !email.getText().toString().isEmpty()&&!number.getText().toString().isEmpty())
                 {
-                    studentDataSurce.open();//open connection and add data and close connction show toast
-                    studentDataSurce.createStudent(name.getText().toString(),email.getText().toString(),Integer.parseInt(number.getText().toString()));
-                    studentDataSurce.close();
-                    Toast.makeText(getApplicationContext(),"Down!",Toast.LENGTH_LONG).show();
-                    name.setText("");email.setText("");number.setText("");
+                    if (student.rgxData(name.getText().toString(),"txt")
+                            && student.rgxData(number.getText().toString(),"number")&&
+                            student.rgxData(email.getText().toString(),"email")) {
+
+                        studentDataSurce.open();//open connection and add data and close connction show toast
+                        studentDataSurce.createStudent(name.getText().toString(), email.getText().toString(), Integer.parseInt(number.getText().toString()));
+                        studentDataSurce.close();
+                        Toast.makeText(getApplicationContext(), "Down!", Toast.LENGTH_LONG).show();
+                        name.setText("");
+                        email.setText("");
+                        number.setText("");
+                    }else {
+                        Toast.makeText(getApplicationContext()," Error In Data",Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(getApplicationContext(),"Filed Please Entar Data",Toast.LENGTH_LONG).show();
                 }
             }
         });//
+
 
 
     }

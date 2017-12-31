@@ -1,5 +1,7 @@
 package com.example.mahmoud.myapplication;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by mahmoud on 25/12/17.
  */
@@ -41,5 +43,33 @@ public class Student {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+
+
+    /***
+     *  Create RGX From Data INTER DataBase
+     * @param txt
+     * @param pattern @see   txt = txt using or pattern = txt | number
+     * @return true OR False
+     */
+    public boolean rgxData(String txt,String pattern)
+    {
+        boolean su=false;
+                switch (pattern){
+                    case "txt":
+                        pattern="\\w+";
+                        su=  Pattern.matches(pattern,txt);
+                        break;
+                    case "number":
+                        pattern="\\d+";
+                        su=  Pattern.matches(pattern,txt);
+                        break;
+                    case "email":
+                        pattern="^\\w+@\\w+\\.[a-z09]+$";
+                        su=  Pattern.matches(pattern,txt);
+                        break;
+                }
+                return su;
     }
 }
